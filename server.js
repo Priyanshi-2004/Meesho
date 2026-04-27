@@ -9,6 +9,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+const PORT = process.env.PORT || 5000;
+
 mongoose.connect(process.env.MONGO_URI);
 
 const User = require("./models/User");
@@ -174,6 +176,6 @@ app.get("/get-history/:email", async (req, res) => {
 
     res.json({ success: true, history: user.history });
 });
-app.listen(5000, () => {
-    console.log("🚀 Backend running on http://localhost:5000");
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });
