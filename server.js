@@ -9,7 +9,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect("mongodb://127.0.0.1:27017/meesho");
+mongoose.connect(process.env.MONGO_URI);
 
 const User = require("./models/User");
 
@@ -64,7 +64,7 @@ app.post("/admin/add-user", async (req, res) => {
 // 🔹 ADMIN: Toggle user status
 app.post("/admin/toggle-status", async (req, res) => {
     const { email, isActive } = req.body;
-    
+
     if (!email) {
         return res.status(400).json({ success: false, message: "Email is required" });
     }
@@ -117,7 +117,7 @@ app.post("/check-user", async (req, res) => {
     }
 
     // ✅ Success
-    res.json({ 
+    res.json({
         access: true,
         user: {
             email: user.email,
