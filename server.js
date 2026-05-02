@@ -122,10 +122,13 @@ app.post("/check-user", async (req, res) => {
     res.json({
         access: true,
         user: {
+            id: user._id,
             email: user.email,
             plan: user.plan,
             deviceId: user.deviceId,
-            expiry: user.expiry
+            expiry: user.expiry,
+            isActive: user.isActive,
+            activationDate: user._id.getTimestamp()
         }
     });
 });
