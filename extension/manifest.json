@@ -1,0 +1,22 @@
+{
+    "manifest_version": 3,
+    "name": "Meesho Shipping Optimizer",
+    "version": "1.0",
+    "description": "Optimize shipping cost using AI images",
+    "permissions": [
+        "storage",
+        "activeTab",
+        "scripting"
+    ],
+    "action": {
+        "default_popup": "popup.html"
+    },
+    "content_scripts": [
+        {
+            "matches": ["*://*.meesho.com/*", "*://supplier.meesho.com/*"],
+            "css": ["content.css"],
+            "js": ["content.js"],
+            "run_at": "document_end"
+        }
+    ]
+}
